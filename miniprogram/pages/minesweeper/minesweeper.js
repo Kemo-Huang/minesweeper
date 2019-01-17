@@ -79,6 +79,11 @@ Page({
     mines: [],
     bugNum: mineNum
   },
+  returnMain: function() {
+    wx.redirectTo({
+      url: '../index/index'
+    })
+  },
   onClick: function(e) {
     if (end) {
       return;
@@ -106,10 +111,15 @@ Page({
         if (tar == 0) {
           state = extendZeros(grids, state, dataset.row, dataset.col);
         } else if (tar == -1) {
+          // lose the game!
           that.stopTimer();
           end = true;
+          for (var mine of mines) {
+            state[mine[0]][mine[1]] = true;
+          }
+        } else {
+          state[dataset.row][dataset.col] = true;
         }
-        state[dataset.row][dataset.col] = true;
         that.setData({
           state: state
         })
@@ -118,8 +128,15 @@ Page({
       // set mines
       while (mines.length < mineNum) {
         var r = [Math.floor(Math.random() * rowNum), Math.floor(Math.random() * colNum)];
-        if (!(r[0] == dataset.row && r[1] == dataset.col) && mines.indexOf(r) == -1) {
-          mines.push(r);
+        if (!(r[0] == dataset.row && r[1] == dataset.col)) {
+          var f = false;
+          for (var mine of mines) {
+            if (mine[0] == r[0] && mine[1] == r[1]) {
+              f = true;
+            }
+          }
+          if (!f)
+            mines.push(r);
         }
       }
       // set numbers
@@ -240,7 +257,7 @@ Page({
   onFlag: function() {
     useFlag = true;
   },
-  removeFlag: function(e){
+  removeFlag: function(e) {
     const dataset = e.currentTarget.dataset;
     var flags = this.data.flags;
     flags[dataset.row][dataset.col] = 0;

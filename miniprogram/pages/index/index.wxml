@@ -13,6 +13,6 @@
       <button class="start-button" bindtap='onStart'>Click to Start</button>
       <image class='start-icon' mode="aspectFit" src='../../images/ladybird.png'></image>
     </view>
-    <text class='info'>Produced by Kemo</text>
+    <text class='info'>Produced by Kemo\n11610728@mail.sustc.edu.cn</text>
   </view>
 </view>

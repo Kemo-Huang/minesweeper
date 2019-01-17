@@ -21,7 +21,7 @@ page {
 
 .slogon {
   width: 85%;
-  margin-top: 75rpx;
+  margin-top: 50rpx;
   font-size: xx-large;
   font-weight: 800;
   color: green;
@@ -65,4 +65,5 @@ page {
   font-size: 25rpx;
   color: rgba(0, 0, 0, 0.5);
   margin-bottom: 40rpx;
+  text-align: center;
 }

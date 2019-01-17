@@ -1,7 +1,12 @@
 <!--miniprogram/pages/minesweeper/minesweeper.wxml-->
 <view class='container'>
+  <view class='return'>
+    <image class='return-icon' mode="aspectFit" src='../../images/left-arrow.svg' bindtap='returnMain'></image>
+  </view>
   <view class='title'>
-    <image class='title-icon' mode="aspectFit" src='../../images/flag.png' bindtap='onFlag'></image>
+    <view class='title-icon' style='padding-right: 50rpx;' bindtap='onFlag'>
+      <image style="height:100%;width:100%;" mode="aspectFit" src='../../images/flag.png'></image>
+    </view>
     <image class='title-icon' mode="aspectFit" src='../../images/clock.png'></image>
     <text class='title-text'>{{time}}</text>
     <image class='title-icon' mode="aspectFit" src='../../images/ladybird.png'></image>
