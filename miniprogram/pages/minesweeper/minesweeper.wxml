@@ -1,0 +1,23 @@
+<!--miniprogram/pages/minesweeper/minesweeper.wxml-->
+<view class='container'>
+  <view class='title'>
+    <image class='title-icon' mode="aspectFit" src='../../images/flag.png' bindtap='onFlag'></image>
+    <image class='title-icon' mode="aspectFit" src='../../images/clock.png'></image>
+    <text class='title-text'>{{time}}</text>
+    <image class='title-icon' mode="aspectFit" src='../../images/ladybird.png'></image>
+    <text class='title-text'>{{bugNum}}</text>
+  </view>
+  <view wx:for="{{[0, 1, 2, 3, 4, 5, 6, 7, 8]}}" wx:key="*this" class='grid-row' wx:for-item="row">
+    <view wx:for="{{[0, 1, 2, 3, 4, 5, 6, 7, 8]}}" wx:key="*this" wx:for-item="col">
+      <view wx:if="{{flags[row][col]}}" class='closed' bindtap='removeFlag' data-row='{{row}}' data-col='{{col}}'>
+        <image mode='aspectFit' src='../../images/flag.png' class='grid-pic'></image>
+      </view>
+      <button wx:elif="{{!state[row][col]}}" class='closed' bindtap='onClick' data-row='{{row}}' data-col='{{col}}'></button>
+      <view wx:else class='open'>
+        <image wx:if="{{grids[row][col]==-1}}" class='grid-pic' mode="aspectFit" src='../../images/ladybird.png'></image>
+        <text wx:elif="{{grids[row][col]}}" class='number'>{{grids[row][col]}}</text>
+      </view>
+    </view>
+  </view>
+  <button class='restart' bindtap='restart'>Restart</button>
+</view>
